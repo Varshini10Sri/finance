@@ -63,6 +63,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/login" element={!user ? <Login onLogin={handleLoginSuccess} /> : <Navigate to="/dashboard" />} />
+        <Route path="/document" element={<DocumentationWrapper user={user} onLogout={handleLogout} />} />
         <Route path="/*" element={user ? <DashboardLayout user={user} token={token} onLogout={handleLogout} /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
@@ -70,6 +71,21 @@ const App = () => {
 };
 
 // --- Components ---
+
+const DocumentationWrapper = ({ user, onLogout }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="container" style={{ padding: '7rem 2rem 5rem' }}>
+       <nav className="glass" style={{ position: 'fixed', top: '1.5rem', left: '2rem', right: '2rem', padding: '1rem 2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 1000 }}>
+        <h2 className="glass-title" style={{ fontSize: '1.75rem', cursor: 'pointer' }} onClick={() => navigate('/dashboard')}>FintechAI</h2>
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <Link to="/login"><button className="btn-primary">Return to Portal</button></Link>
+        </div>
+      </nav>
+      <Documentation />
+    </div>
+  );
+};
 
 const Login = ({ onLogin }) => {
   const [showLogin, setShowLogin] = useState(true);
