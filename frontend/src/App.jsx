@@ -169,8 +169,8 @@ const DashboardLayout = ({ user, token, onLogout }) => {
                 </button>
               </Link>
             )}
-            <Link to="/documentation">
-              <button className={location.pathname === '/documentation' ? 'btn-primary' : 'btn-icon'} style={{ padding: '0.5rem 1rem' }}>
+            <Link to="/document">
+              <button className={location.pathname === '/document' ? 'btn-primary' : 'btn-icon'} style={{ padding: '0.5rem 1rem' }}>
                 <FileText size={18} /> Documentation
               </button>
             </Link>
@@ -189,7 +189,7 @@ const DashboardLayout = ({ user, token, onLogout }) => {
         <Routes location={location} key={location.pathname}>
           <Route path="/dashboard" element={<Dashboard api={api} user={user} onLogout={onLogout} />} />
           <Route path="/users" element={user.role === 'Admin' ? <UserManagement api={api} user={user} /> : <Navigate to="/dashboard" />} />
-          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/document" element={<Documentation />} />
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </AnimatePresence>
